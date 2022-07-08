@@ -1,0 +1,475 @@
+{
+    "openapi": "3.0.0",
+    "info": {
+        "title": "Test Documentación API",
+        "description": "Endpoints de la app Test",
+        "contact": {
+            "email": "ciudadana@gmail.com"
+        },
+        "license": {
+            "name": "Apache 2.0",
+            "url": "http://www.apache.org/licenses/LICENSE-2.0.html"
+        },
+        "version": "1.0.0"
+    },
+    "servers": [
+        {
+            "url": "http://my-default-host.com",
+            "description": "Endpoints de la app test"
+        }
+    ],
+    "paths": {
+        "/login": {
+            "post": {
+                "tags": [
+                    "Login"
+                ],
+                "summary": "Login user",
+                "description": "Login the user",
+                "operationId": "2dd578ff7aba2721293dac66833b27d1",
+                "requestBody": {
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "properties": {
+                                    "email": {
+                                        "description": "Email of user",
+                                        "type": "string"
+                                    },
+                                    "password": {
+                                        "description": "Password of user",
+                                        "type": "string"
+                                    }
+                                },
+                                "type": "object"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "Successful operation"
+                    },
+                    "400": {
+                        "description": "Bad Request"
+                    },
+                    "404": {
+                        "description": "Email or password incorrect"
+                    }
+                }
+            }
+        },
+        "/clients": {
+            "get": {
+                "tags": [
+                    "Client"
+                ],
+                "summary": "Get all clients",
+                "description": "Returns the list of clients",
+                "operationId": "af1f3794367a5e843bf15e3a9033d911",
+                "responses": {
+                    "200": {
+                        "description": "List of all  clients "
+                    },
+                    "401": {
+                        "description": "Unauthenticated"
+                    }
+                }
+            },
+            "post": {
+                "tags": [
+                    "Client"
+                ],
+                "summary": "Create a new client",
+                "description": "Returns created client",
+                "operationId": "15981a5da120d8b4ea1b91b05a35622b",
+                "requestBody": {
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "properties": {
+                                    "name": {
+                                        "description": "name of client",
+                                        "type": "string"
+                                    },
+                                    "ci": {
+                                        "description": "ci of client",
+                                        "type": "integer",
+                                        "format": "long"
+                                    }
+                                },
+                                "type": "object"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "Successful operation"
+                    },
+                    "400": {
+                        "description": "Bad Request"
+                    }
+                }
+            }
+        },
+        "/clients/{id}": {
+            "put": {
+                "tags": [
+                    "Client"
+                ],
+                "summary": "Get a client by id",
+                "description": "Returns the client",
+                "operationId": "07655d2d45727df914c099c67058583e",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "Client id",
+                        "required": true,
+                        "schema": {
+                            "type": "integer"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Successful operation"
+                    },
+                    "404": {
+                        "description": "The Client not be found"
+                    },
+                    "401": {
+                        "description": "Unauthenticated"
+                    }
+                }
+            },
+            "delete": {
+                "tags": [
+                    "Client"
+                ],
+                "summary": "Delete a client by id",
+                "description": "Returns the client",
+                "operationId": "20de5e8bdef993807384fd7040f9ae92",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "Client id",
+                        "required": true,
+                        "schema": {
+                            "type": "integer"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Successful operation"
+                    },
+                    "400": {
+                        "description": "This client does not exist"
+                    },
+                    "401": {
+                        "description": "Unauthenticated"
+                    }
+                }
+            }
+        },
+        "/": {
+            "get": {
+                "description": "Home page",
+                "responses": {
+                    "default": {
+                        "description": "Welcome page"
+                    }
+                }
+            }
+        },
+        "/registers": {
+            "get": {
+                "tags": [
+                    "Register"
+                ],
+                "summary": "Get all registers of client",
+                "description": "Returns the list of registers clients",
+                "operationId": "2647427dcdd0299261085e62d97a9c66",
+                "responses": {
+                    "200": {
+                        "description": "List of all  registers clients "
+                    },
+                    "401": {
+                        "description": "Unauthenticated"
+                    }
+                }
+            },
+            "put": {
+                "tags": [
+                    "Register"
+                ],
+                "summary": "Update a  register",
+                "description": "Returns updated register",
+                "operationId": "c2592742e481c3d34abbcf6be28b476e",
+                "requestBody": {
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "properties": {
+                                    "end_time": {
+                                        "description": "end time of the register",
+                                        "type": "string",
+                                        "format": "date-time"
+                                    },
+                                    "total_time": {
+                                        "description": "total time ",
+                                        "type": "number",
+                                        "format": "float"
+                                    }
+                                },
+                                "type": "object"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "Successful operation"
+                    },
+                    "400": {
+                        "description": "This register does not exist"
+                    }
+                }
+            },
+            "post": {
+                "tags": [
+                    "Register"
+                ],
+                "summary": "Create a new register",
+                "description": "Returns created register",
+                "operationId": "883078ab9d777ea84e47d83506332d68",
+                "requestBody": {
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "properties": {
+                                    "vehicle_id": {
+                                        "description": "Id of the vehicle",
+                                        "type": "string"
+                                    },
+                                    "client_id": {
+                                        "description": "ID of the client",
+                                        "type": "string"
+                                    },
+                                    "date": {
+                                        "description": "date of the register",
+                                        "type": "string",
+                                        "format": "date"
+                                    },
+                                    "start_time": {
+                                        "description": "start time of the register",
+                                        "type": "string",
+                                        "format": "date-time"
+                                    }
+                                },
+                                "type": "object"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "Successful operation"
+                    },
+                    "400": {
+                        "description": "Bad Request"
+                    }
+                }
+            }
+        },
+        "/vehicles": {
+            "get": {
+                "tags": [
+                    "Vehicle"
+                ],
+                "summary": "Get all vehicles",
+                "description": "Returns the list of vehicles",
+                "operationId": "d17171521b86a0b324bfa4d4f6ca1f8a",
+                "responses": {
+                    "200": {
+                        "description": "List of all  vehicles "
+                    },
+                    "401": {
+                        "description": "Unauthenticated"
+                    }
+                }
+            },
+            "post": {
+                "tags": [
+                    "Vehicle"
+                ],
+                "summary": "Create a new vehicle",
+                "description": "Returns created vehicle",
+                "operationId": "e19336f3d4ff20d9858a84d5113213bc",
+                "requestBody": {
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "properties": {
+                                    "enrollment": {
+                                        "description": "enrollment of vehicle",
+                                        "type": "string"
+                                    },
+                                    "color": {
+                                        "description": "colorof vehicle",
+                                        "type": "string"
+                                    },
+                                    "client_id": {
+                                        "description": "ID of the client",
+                                        "type": "string"
+                                    },
+                                    "vehicle_type_id": {
+                                        "description": "ID of the vehicle Type",
+                                        "type": "string"
+                                    }
+                                },
+                                "type": "object"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "Successful operation"
+                    },
+                    "400": {
+                        "description": "Bad Request"
+                    }
+                }
+            }
+        },
+        "/vehicles/{id}": {
+            "put": {
+                "tags": [
+                    "Vehicle"
+                ],
+                "summary": "Get a vehicle by id",
+                "description": "Returns the vehicle",
+                "operationId": "e2a7478a6b464a1d15497b4ce66f5b8b",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "Vehicle id",
+                        "required": true,
+                        "schema": {
+                            "type": "integer"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Successful operation"
+                    },
+                    "404": {
+                        "description": "The Vehicle not be found"
+                    },
+                    "401": {
+                        "description": "Unauthenticated"
+                    }
+                }
+            },
+            "delete": {
+                "tags": [
+                    "Vehicle"
+                ],
+                "summary": "Delete a vehicle by id",
+                "description": "Returns the client",
+                "operationId": "6c00c88c53d96dd1f08e69ba6d6484a1",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "Vehicle id",
+                        "required": true,
+                        "schema": {
+                            "type": "integer"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Successful operation"
+                    },
+                    "400": {
+                        "description": "This vehicle does not exist"
+                    },
+                    "401": {
+                        "description": "Unauthenticated"
+                    }
+                }
+            }
+        },
+        "/vehicletype_list": {
+            "get": {
+                "tags": [
+                    "Vehicle Type"
+                ],
+                "summary": "Get all vehicle types",
+                "description": "Returns the list of vehicle type",
+                "operationId": "385aa7bef1528866e4e3f722d1ca63da",
+                "responses": {
+                    "200": {
+                        "description": "List of all  vehicles types "
+                    },
+                    "401": {
+                        "description": "Unauthenticated"
+                    }
+                }
+            }
+        },
+        "/vehicletype": {
+            "post": {
+                "tags": [
+                    "Vehicle Type"
+                ],
+                "summary": "Create a new vehicle Type",
+                "description": "Returns created vehicleType",
+                "operationId": "07921c6d3bba310b87d433605b89abdf",
+                "requestBody": {
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "properties": {
+                                    "name": {
+                                        "description": "Name of vehicle type",
+                                        "type": "string"
+                                    }
+                                },
+                                "type": "object"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "Successful operation"
+                    },
+                    "400": {
+                        "description": "Bad Request"
+                    }
+                }
+            }
+        }
+    },
+    "tags": [
+        {
+            "name": "Api test",
+            "description": "Endpoints de la app test"
+        }
+    ]
+}
